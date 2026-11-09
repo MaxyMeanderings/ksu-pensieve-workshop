@@ -20,7 +20,8 @@ If Chromium is unavailable, pass the installed Chrome executable through the
 Slidev export executable-path option. See https://sli.dev/guide/exporting.
 
 GitHub Pages deployment is configured in ../.github/workflows/pages.yml.
-Publication awaits repository creation and Pages enablement.
+Public repository: https://github.com/doctor-ew/ksu-pensieve-workshop
+Presentation: https://doctor-ew.github.io/ksu-pensieve-workshop/
 For a project site, build with `npm run build -- --base /ksu-pensieve-workshop/`.
 The instructor guide stays outside public/. Handouts and source excerpts are
 bundled in public/ so their links work in the static build.

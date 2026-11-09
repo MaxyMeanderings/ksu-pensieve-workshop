@@ -30,8 +30,6 @@
   version for that dependency. npm also reported an unrelated user-config warning.
 - No new Pensieve application tests, authenticated recipient verification,
   cross-laptop test, or live Claude build was executed for this presentation.
-- No public deployment or push performed. The local preview is not
-  an audience-accessible hosting URL.
 - Presenter split, timed rehearsal, and any live coding/student setup remain open.
 
 ## Outputs
@@ -51,8 +49,21 @@
 - Revised 32-page PDF exported; pages 17–23 rendered and visually checked again.
   No clipping or collisions observed. Existing export warning remains.
 - GitHub Pages workflow prepared with repository-derived base path, PDF export,
-  artifact deployment, and SPA 404 fallback. Not yet run on GitHub.
+  artifact deployment, and SPA 404 fallback.
 - Sixteen project-base HTTP checks passed locally, including marks, portraits,
   fonts, handouts, sources, PDF, and 404 fallback document.
 - Separate local Git repository prepared; private coordination/planning documents
-  are excluded from the publication set. Source visibility decision is pending.
+  are excluded from the publication set. Public source visibility approved.
+
+## Published verification — 2026-11-09
+
+- Deployment of presentation revision `2936754` succeeded:
+  https://github.com/doctor-ew/ksu-pensieve-workshop/actions/runs/42681344546
+- Live presentation: https://doctor-ew.github.io/ksu-pensieve-workshop/
+- All 16 live HTTP checks returned 200: index, fallback document, six images,
+  two fonts, three handouts, two source documents, and the PDF. Entry-page
+  JavaScript/CSS references also returned 200.
+- Downloaded live PDF confirmed as 32 pages, titled
+  “Build with AI. Remember with evidence.”
+- These are deployment and HTTP checks; interactive browser behavior remains
+  untested as described above.
