@@ -116,3 +116,5 @@
 .ksu-cover{position:absolute;width:235px;height:auto;right:54px;bottom:95px}.ksu-nav{display:block;width:68px;height:auto;margin:-105px auto 25px}
 
 .slidev-layout pre{font-size:20px!important;line-height:1.5!important;margin:20px 0!important;padding:20px!important;white-space:pre-wrap}
+
+.slidev-layout .definition{font-size:23px;line-height:1.4;color:#efd29c;margin:0 0 22px;max-width:960px}

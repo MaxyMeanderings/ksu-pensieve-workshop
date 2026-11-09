@@ -3,7 +3,7 @@
 Kennesaw State University Claude event; approximately 90 minutes.
 Presenters: Drew Schillinger and Tyler Sztuka.
 
-The 32-slide deck follows a proposed recipient-verified memory handoff feature
+The 37-slide deck follows a proposed recipient-verified memory handoff feature
 through OODA, specification, implementation boundaries, adversarial review,
 repair, and retained evidence. It includes speaker notes and a synthetic local
 interactive fixture. The fixture is not a live Pensieve client.

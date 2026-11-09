@@ -274,7 +274,9 @@ class: content
 
 <div class="slide-number">KENNESAW STATE UNIVERSITY · 17</div>
 
-# DRY: one authorization rule.
+# DRY — Don’t Repeat Yourself
+
+<p class="definition">Keep each rule or piece of knowledge in one authoritative place.</p>
 
 ```ts
 // AwsTeamStore.access — excerpt, formatted
@@ -296,7 +298,81 @@ class: content
 
 <div class="slide-number">KENNESAW STATE UNIVERSITY · 18</div>
 
-# SOLID: inject a focused boundary.
+# S — Single Responsibility
+
+<p class="definition">One module should have one reason to change: one responsibility to its stakeholders.</p>
+
+<div class="two"><section><h3>Vector adapter</h3><p>AwsVectors handles vector-service requests and responses.</p></section><section><h3>Repository</h3><p>AwsTeamStore checks access and loads committed memories.</p></section></div><p class="takeaway">Changing vector transport should not rewrite who can read a pool.</p>
+
+<div class="source"><a href="https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html">SOLID definitions</a> · <a href="https://github.com/doctor-ew/pensieve/blob/c1b093bbb055e7de65f8c23125425aa506a8f068/src/aws-vectors.ts#L9">src/aws-vectors.ts:9</a> · <a href="https://github.com/doctor-ew/pensieve/blob/c1b093bbb055e7de65f8c23125425aa506a8f068/src/aws-team-store.ts#L139">src/aws-team-store.ts:139</a> · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+
+<!--
+SOLID names five design principles. Start with Single Responsibility. This existing boundary separates transport details from authorization and content retrieval; it does not prove the entire repository has a single responsibility. Ask who requests each kind of change.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 19</div>
+
+# O — Open/Closed
+
+<p class="definition">Make room for new behavior through extension, while keeping stable core logic unchanged.</p>
+
+<div class="two"><section><h3>Existing seam</h3><p>AwsTeamStore accepts an AwsVectorIndex dependency.</p></section><section><h3>Example extension</h3><p>Add another vector adapter that honors the same contract.</p></section></div><p class="takeaway">Wire in the new adapter; preserve the search orchestration.</p><p class="small-note">Proposed extension, not a claim that a second production adapter exists.</p>
+
+<div class="source"><a href="https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html">SOLID definitions</a> · <a href="https://github.com/doctor-ew/pensieve/blob/c1b093bbb055e7de65f8c23125425aa506a8f068/src/aws-team-store.ts#L11">src/aws-team-store.ts:11–12,139</a> · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+
+<!--
+The interface is an extension point, not a promise that requirements never change. A new backend must support the same semantics; incompatible behavior can require an intentional contract change. Open for extension, closed against unnecessary edits to stable policy.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 20</div>
+
+# L — Liskov Substitution
+
+<p class="definition">A replacement must preserve the behavior callers are promised, not just match the types.</p>
+
+<div class="two"><section><h3>Compatible replacement</h3><p>Returns memory IDs, revisions, and comparable similarity scores under the same query contract.</p></section><section><h3>Broken replacement</h3><p>Returns raw distance where callers expect a higher-is-better similarity score.</p></section></div><p class="takeaway">Same method signature does not mean same meaning.</p>
+
+<div class="source"><a href="https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html">SOLID definitions</a> · <a href="https://github.com/doctor-ew/pensieve/blob/c1b093bbb055e7de65f8c23125425aa506a8f068/src/aws-vectors.ts#L23">src/aws-vectors.ts:23–28</a> · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+
+<!--
+Authored substitution example grounded in the existing adapter: it requires cosine distance and converts score to 1 minus distance. A replacement must retain comparable score semantics, scope, and revision identity. This is not a claim that every adapter has passed a shared contract suite.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 21</div>
+
+# I — Interface Segregation
+
+<p class="definition">Give clients the capabilities they need, without forcing unrelated dependencies on them.</p>
+
+<div class="two"><section><h3>Existing focused boundary</h3><p>AwsVectorIndex exposes upsert and query, without user administration or sharing APIs.</p></section><section><h3>Read-only client example</h3><p>Give a search-only consumer a query-only interface if it does not need writes.</p></section></div><p class="takeaway">Why should a search screen depend on user deletion?</p><p class="small-note">The query-only interface is a proposed refinement.</p>
+
+<div class="source"><a href="https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html">SOLID definitions</a> · <a href="https://github.com/doctor-ew/pensieve/blob/c1b093bbb055e7de65f8c23125425aa506a8f068/src/aws-team-store.ts#L11">src/aws-team-store.ts:11</a> · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+
+<!--
+The existing store both writes and queries vectors, so the two-method interface fits that client. Do not split interfaces mechanically; split when consumers need different capabilities. TeamRepository is broad, not the example of an ideal tiny interface.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 22</div>
+
+# D — Dependency Inversion
+
+<p class="definition">High-level policy depends on abstractions; concrete adapters implement those abstractions.</p>
 
 ```ts
 // AwsTeamOptions — excerpt
@@ -315,7 +391,25 @@ Show the two-method AwsVectorIndex interface at lines 10–12 and injected fake 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 19</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 23</div>
+
+# ACID — four transaction properties
+
+<p class="definition">A database transaction groups operations under a defined set of guarantees.</p>
+
+<div class="four"><section><h3>A · Atomicity</h3><p>All operations commit, or none do.</p></section><section><h3>C · Consistency</h3><p>Committed changes preserve the enforced invariants.</p></section><section><h3>I · Isolation</h3><p>Concurrent transactions interact according to the isolation level.</p></section><section><h3>D · Durability</h3><p>Acknowledged commits survive failures within the database’s guarantees.</p></section></div><p class="small-note">Application rules still need constraints and checks. ACID does not automatically cover a separate vector service.</p>
+
+<div class="source"><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transactions.html">AWS: DynamoDB transactions</a> · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+
+<!--
+Use the next slide to ground these definitions in an actual transaction. Consistency here means invariant preservation, not the separate concept of eventual versus strongly consistent reads. Isolation is not necessarily serializability for every operation type.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 24</div>
 
 # ACID: protect the concurrent decision.
 
@@ -338,7 +432,7 @@ Atomicity: all or none of this transaction. Consistency: preserve invariants. Is
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 20</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 25</div>
 
 # Saving and indexing<br>have separate failure boundaries.
 
@@ -356,13 +450,15 @@ Show visibility marker at line 49 and final publication at 69. Staging spans tra
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 21</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 26</div>
 
-# Big O: say what grows.
+# Big O — how work grows
 
-<div class="three"><section><h3>N</h3><p>All memories in a pool.</p></section><section><h3>K</h3><p>Candidates returned for this query.</p></section><section><h3>D</h3><p>Embedding dimensions.</p></section></div><p class="takeaway">Which work belongs to our code—and which to the service?</p>
+<p class="definition">An upper bound on time or space growth as the input gets larger.</p>
 
-<div class="source">AWS src/aws-team-store.ts:139 · src/aws-vectors.ts:9 · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+<div class="three"><section><h3>N · Pool size</h3><p>Number of memories stored.<br>Example: 10,000 memories.</p></section><section><h3>K · Candidate count</h3><p>Possible matches returned for checking.<br>Example: 16 candidates.</p></section><section><h3>D · Vector length</h3><p>Numbers used to represent each text.<br>Example: 256 numbers.</p></section></div><p class="small-note">Illustrative values, not measurements. N, K, and D are variables we define here, not an acronym.</p>
+
+<div class="source"><a href="https://xlinux.nist.gov/dads/HTML/bigOnotation.html">NIST: Big O</a> · AWS src/aws-team-store.ts:139 · src/aws-vectors.ts:35 · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
 
 <!--
 Define the variables before analyzing anything. The AWS path queries a hosted vector index then validates returned records. Do not import the older Railway full-scan complexity claim into this path.
@@ -372,7 +468,7 @@ Define the variables before analyzing anything. The AWS path queries a hosted ve
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 22</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 27</div>
 
 # Big O: inspect the local work.
 
@@ -383,22 +479,24 @@ const seen = new Set<string>();
 // For each hit:
 const row = map.get(h.memoryId);
 ```
-<p class="small-note">Expected O(R + K) local bookkeeping with constant-time Map/Set operations; add record/content materialization.</p>
+<p class="small-note">R = loaded memory rows; K = returned candidates. Expected O(R + K) local bookkeeping, assuming constant-time Map/Set operations.</p>
 <p class="takeaway">This does not establish the hosted search cost or latency.</p>
 
 <div class="source"><a href="https://github.com/doctor-ew/pensieve/blob/c1b093bbb055e7de65f8c23125425aa506a8f068/src/aws-team-store.ts#L139">Pensieve · src/aws-team-store.ts#L139</a> · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
 
 <!--
-R = materialized rows, K = returned candidates. Show full filtering at source line 139: absent row, mismatched revision, non-finite score, and duplicates are rejected. Tests at lines 49–52 cover stale/missing candidates. Backend search over N vectors and embedding dimension D are outside this local bound. No benchmark was run.
+R = materialized rows, K = returned candidates. Show full filtering at source line 139: absent row, mismatched revision, non-finite score, and duplicates are rejected. Tests at lines 49–52 cover stale/missing candidates. Backend search over N vectors and embedding dimension D are outside this local bound. Add record/content materialization costs. For a teaching comparison: checking K candidates once is O(K); a hypothetical exhaustive comparison of N vectors with D coordinates takes O(N × D) arithmetic. This is not a bound on the hosted backend. No benchmark was run.
 -->
 
 ---
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 23</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 28</div>
 
-# CoC: let conventions<br>do the wiring.
+# CoC — Convention over Configuration
+
+<p class="definition">Use agreed names and locations as defaults, instead of configuring every item separately.</p>
 
 ```json
 "test": "tsx --test test/*.test.ts"
@@ -416,7 +514,7 @@ This is the pipeline meaning of CoC: Convention over Configuration, not separati
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 24</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 29</div>
 
 # Give the challenger<br>the evidence.
 
@@ -432,7 +530,7 @@ Use a separate review context if practical, but do not claim reviewer independen
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 25</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 30</div>
 
 # Try the wrong<br>account and service.
 
@@ -448,7 +546,7 @@ Interactive fixture only, no network. Choose a failure scenario, reveal the inco
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 26</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 31</div>
 
 # The repair must change<br>the observation.
 
@@ -464,7 +562,7 @@ Make the fabrication boundary explicit: the intentionally incomplete version is 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 27</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 32</div>
 
 # A green result needs<br>a trace you can inspect.
 
@@ -480,7 +578,7 @@ Test source exists for related boundaries; this is not a report that the new ver
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 28</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 33</div>
 
 # Your turn: reject<br>one unsupported claim.
 
@@ -496,7 +594,7 @@ Optional pair exercise or audience discussion depending on final format. Give 2�
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 29</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 34</div>
 
 # Remember the decision.<br>Keep the limitation.
 
@@ -512,7 +610,7 @@ Show a completed decision artifact, not a whole chat dump. Mark the fixture synt
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 30</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 35</div>
 
 # The next session starts<br>with better orientation.
 
@@ -528,7 +626,7 @@ Return to OODA. Ask what should be invalidated if the service, identity, permiss
 class: closing
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 31</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 36</div>
 
 # Leave with one<br>defensible engineering story.
 
@@ -544,7 +642,7 @@ Reserve the final seven minutes for questions and next steps. This deck does not
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 32</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 37</div>
 
 # Sources and take-home kit.
 

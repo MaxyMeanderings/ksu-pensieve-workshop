@@ -67,3 +67,14 @@
   “Build with AI. Remember with evidence.”
 - These are deployment and HTTP checks; interactive browser behavior remains
   untested as described above.
+
+## Definition and example revision — 2026-11-09
+
+- Expanded to 37 slides: DRY definition; one definition/example per SOLID
+  letter; four ACID properties; Big O definition and illustrative N/K/D values;
+  explicit R meaning; Convention over Configuration definition.
+- Updated navigation starts and instructor timing, retaining the 90-minute target.
+- Node 24.13.1 production build and PDF export passed. All 12 pages in the
+  affected 17–28 range rendered and visually inspected; no clipping observed.
+- Existing-versus-proposed examples are labeled. No new product tests or
+  complexity benchmarks were run. Browser interaction limitation remains.

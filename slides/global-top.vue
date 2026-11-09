@@ -7,8 +7,8 @@ const sections = [
   { label: 'Observe + orient', start: 5 },
   { label: 'Decide', start: 10 },
   { label: 'Act + inspect', start: 15 },
-  { label: 'Challenge + repair', start: 24 },
-  { label: 'Remember', start: 29 },
+  { label: 'Challenge + repair', start: 29 },
+  { label: 'Remember', start: 34 },
 ]
 const active = computed(() => sections.reduce((found, s, i) => nav.currentPage.value >= s.start ? i : found, 0))
 </script>

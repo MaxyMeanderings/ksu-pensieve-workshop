@@ -73,3 +73,17 @@ authorization, injected vector dependency, conditional transaction, publication 
 indexing failure gap, candidate bookkeeping, and test-discovery convention.
 No new production tests or deployed-byte comparison were performed.
 CoC here means Convention over Configuration: package.json:28.
+
+## Definition expansion
+
+Current deck: 37 slides. DRY definition on 17; individual SOLID definitions and
+examples on 18–22; ACID definitions/example on 23–25; Big O and variables on
+26–27; Convention over Configuration on 28. Earlier slide numbers above describe
+the initial 32-slide edition.
+
+- SOLID definitions: https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html
+- Big O definition: https://xlinux.nist.gov/dads/HTML/bigOnotation.html
+- N = pool memory count; K = returned candidate count; D = numbers per embedding;
+  R = loaded memory rows. Numeric examples are illustrative, not benchmark data.
+- Existing source supports the adapter/repository boundary and injection seam.
+  The alternative adapter and query-only interface are explicitly proposed examples.
