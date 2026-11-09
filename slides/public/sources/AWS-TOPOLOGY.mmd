@@ -1,0 +1,12 @@
+%% Code-defined topology c1b093b, not a live AWS audit. Ingress: CloudFront/WAF and API Gateway. Hourly reconciliation also invokes worker. S3 snapshots and SES delivery omitted from drawing.
+%%{init: {"theme":"dark", "themeVariables":{"fontSize":"22px"}, "flowchart":{"nodeSpacing":25,"rankSpacing":35,"padding":12}}}%%
+flowchart LR
+  Client["Browser / AI"] --> API["API Lambda"]
+  Client -. "Sign-in" .-> Cognito["Cognito"]
+  API -. "Identity" .-> Cognito
+  API <-->|"Records + access"| DB[("DynamoDB")]
+  DB -->|"Stream"| Worker["Worker Lambda"]
+  API -->|"Query"| Model["Bedrock<br/>embeddings"]
+  Worker -->|"Documents"| Model
+  Worker -->|"Write"| Vectors[("S3 Vectors")]
+  API <-->|"Candidates"| Vectors

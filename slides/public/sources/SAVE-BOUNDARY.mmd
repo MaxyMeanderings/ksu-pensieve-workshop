@@ -1,0 +1,3 @@
+%% Code-defined topology, source c1b093bbb055e7de65f8c23125425aa506a8f068; not a live AWS audit.
+flowchart LR
+  A["Authorize writer"] --> B["Stage records + durable work"] --> C["Final transaction:<br/>check access + lease; commit marker"] --> D["Exact-ID read eligible"]

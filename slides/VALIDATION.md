@@ -78,3 +78,15 @@
   affected 17–28 range rendered and visually inspected; no clipping observed.
 - Existing-versus-proposed examples are labeled. No new product tests or
   complexity benchmarks were run. Browser interaction limitation remains.
+
+## Builder-reviewed architecture revision — 2026-11-09
+
+- Replaced slides 8 and 25; deck remains 37 slides. Architecture is explicitly
+  code-defined, not a fresh audit of deployed AWS resources.
+- Original builder supplied topology and corrections; diagram omits ingress,
+  reconciliation, S3 snapshots and SES from its nodes for readability and states
+  them in the caption/notes. Worker is shared, not a separate invitation Lambda.
+- Slide 25 separates save, indexing and recall; notes explain receipt timing
+  and the application publication marker. Four .mmd sources are downloadable.
+- Local PDF export passed. Both changed slides rendered and inspected; topology
+  labels enlarged after the first export. No clipping observed in final output.

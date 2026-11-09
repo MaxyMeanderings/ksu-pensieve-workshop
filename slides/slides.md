@@ -130,14 +130,32 @@ class: content
 
 <div class="slide-number">KENNESAW STATE UNIVERSITY · 08</div>
 
-# Orient before you repair.
+# Where does a memory go?
 
-<div class="flow"><span>Claude / client</span><i>→</i><span>Service</span><i>→</i><span>Identity + pool</span><i>→</i><span>Memory</span></div><div class="two"><section><h3>Competing explanations</h3><p>Wrong destination? Wrong account? Missing membership?</p></section><section><h3>Discriminating evidence</h3><p>Check the same record under the actual recipient’s session.</p></section></div>
+<div class="aws-topology">
 
-<div class="source">AWS src/aws-team-store.ts:35,74 · source packet · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+```mermaid
+%%{init: {"theme":"dark", "themeVariables":{"fontSize":"22px"}, "flowchart":{"nodeSpacing":25,"rankSpacing":35,"padding":12}}}%%
+flowchart LR
+  Client["Browser / AI"] --> API["API Lambda"]
+  Client -. "Sign-in" .-> Cognito["Cognito"]
+  API -. "Identity" .-> Cognito
+  API <-->|"Records + access"| DB[("DynamoDB")]
+  DB -->|"Stream"| Worker["Worker Lambda"]
+  API -->|"Query"| Model["Bedrock<br/>embeddings"]
+  Worker -->|"Documents"| Model
+  Worker -->|"Write"| Vectors[("S3 Vectors")]
+  API <-->|"Candidates"| Vectors
+```
+
+</div>
+<p class="architecture-caption">Cognito establishes identity. Pensieve checks pool access.</p>
+<p class="architecture-note">Ingress: CloudFront / WAF → API Gateway. Recovery: hourly worker reconciliation.<br/>Also: S3 share snapshots; SES invitations through the same worker.</p>
+
+<div class="source">Code-defined architecture, not a live AWS audit · <a href="https://github.com/doctor-ew/pensieve/blob/c1b093bbb055e7de65f8c23125425aa506a8f068/infra/aws-serverless/compute.tf#L6">compute.tf:6,111</a> · <a href="https://github.com/doctor-ew/pensieve/blob/c1b093bbb055e7de65f8c23125425aa506a8f068/src/aws-runtime.ts#L22">aws-runtime.ts:22</a> · <PublicLink path="sources/AWS-TOPOLOGY.mmd">Mermaid</PublicLink></div>
 
 <!--
-Use the diagram as a simplified logical map, not an exhaustive deployment diagram. Explain that a pool name alone is insufficient and an identity is not a display name.
+Builder-reviewed topology at c1b093bbb055e7de65f8c23125425aa506a8f068. Spend about two minutes here. CloudFront/WAF and API Gateway are grouped for readability; see infra/aws-serverless/cloudfront.tf:42 and compute.tf:40. Cognito issuer/audience/nonce/email validation is src/cognito.ts:50; pool access is src/aws-team-store.ts:35. Browser sign-in is not a Cognito round trip on every MCP request. Ordinary S3 snapshots: src/aws-share-store.ts:15. One worker handles indexing, invitation delivery, and audit processing: src/aws-worker.ts:15. Reconciliation: compute.tf:111. Bedrock and S3 Vectors: src/aws-vectors.ts:9,35. These source-defined services have not been re-audited against live AWS resources for this slide. Ask which boundary explains a successful save followed by failed recall.
 -->
 
 ---
@@ -434,16 +452,41 @@ class: content
 
 <div class="slide-number">KENNESAW STATE UNIVERSITY · 25</div>
 
-# Saving and indexing<br>have separate failure boundaries.
+# Saved is not yet indexed.
 
-<div class="flow"><span>Stage records</span><i>→</i><span>Commit visibility</span><i>→</i><span>Upsert vectors</span><i>→</i><span>Record receipt</span></div>
-<p class="takeaway">Vectors may exist before the indexing receipt commits.</p>
-<p class="small-note">A retry may repeat embedding. Stable keys do not mean exactly-once execution.</p>
+<div class="boundary-label">SAVE · DynamoDB publication protocol</div>
+<div class="boundary-diagram">
 
-<div class="source"><a href="https://github.com/doctor-ew/pensieve/blob/c1b093bbb055e7de65f8c23125425aa506a8f068/src/aws-team-store.ts#L107">Pensieve · src/aws-team-store.ts#L107</a> · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+```mermaid
+flowchart LR
+  A["Authorize writer"] --> B["Stage records + durable work"] --> C["Final transaction:<br/>check access + lease; commit marker"] --> D["Exact-ID read eligible"]
+```
+
+</div>
+<div class="boundary-label">INDEX · asynchronous external work</div>
+<div class="boundary-diagram">
+
+```mermaid
+flowchart LR
+  E["Stream / reconciliation"] --> F["Worker checks access<br/>+ embeds documents"] --> G["Upsert to S3 Vectors"] --> H["DynamoDB transaction:<br/>record indexing progress"]
+```
+
+</div>
+<div class="boundary-label">RECALL · validate candidates against authoritative records</div>
+<div class="boundary-diagram">
+
+```mermaid
+flowchart LR
+  Q["Authorize + embed query"] --> R["Get vector candidates"] --> S["Load committed records"] --> T["Recheck access + revisions<br/>before returning text"]
+```
+
+</div>
+<p class="architecture-caption">No single transaction spans DynamoDB, embeddings, and S3 Vectors.</p>
+
+<div class="source"><a href="https://github.com/doctor-ew/pensieve/blob/c1b093bbb055e7de65f8c23125425aa506a8f068/src/aws-team-store.ts#L51">aws-team-store.ts:51–71,101–113,139</a> · <PublicLink path="sources/SAVE-BOUNDARY.mmd">Save</PublicLink> / <PublicLink path="sources/INDEX-BOUNDARY.mmd">Index</PublicLink> / <PublicLink path="sources/RECALL-BOUNDARY.mmd">Recall Mermaid</PublicLink></div>
 
 <!--
-Show visibility marker at line 49 and final publication at 69. Staging spans transactions; this is an application publication protocol. Then show vector upsert at 109 and receipt transaction at 113. Search checks current access, committed records, and revision; it does not consult indexing receipts. Ask which external action already happened if the receipt transaction fails.
+Spend about three minutes. Staging spans multiple transactions; the final commit marker controls application visibility. The arrow from commit to exact-ID read means eligible, still subject to read authorization. Stream events or hourly reconciliation invoke the worker. A vector upsert can succeed before the progress receipt commits, so retry may repeat embedding. Search checks membership, committed records, and matching revisions; it does not require an indexing receipt. A vector may be searchable before progress is recorded. The three rows describe connected stages, not one database transaction. All source claims pinned to c1b093bbb055e7de65f8c23125425aa506a8f068. Existing old diagram incorrectly separated an Invitation Lambda; implementation has API and worker functions.
 -->
 
 ---

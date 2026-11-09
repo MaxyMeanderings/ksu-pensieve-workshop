@@ -87,3 +87,18 @@ the initial 32-slide edition.
   R = loaded memory rows. Numeric examples are illustrative, not benchmark data.
 - Existing source supports the adapter/repository boundary and injection seam.
   The alternative adapter and query-only interface are explicitly proposed examples.
+
+## Builder-reviewed architecture diagrams
+
+Slides 8 and 25 describe code-defined topology at c1b093bbb055e7de65f8c23125425aa506a8f068,
+not a fresh deployed-resource audit. Two configured Lambdas (API and worker);
+the worker also handles invitation delivery. API recall embeds queries; worker
+indexing embeds documents. Hourly reconciliation supplements stream processing.
+
+- [Slide 8 Mermaid](AWS-TOPOLOGY.mmd): infra/aws-serverless/compute.tf:6,40,111;
+  cloudfront.tf:42; src/aws-runtime.ts:22; src/cognito.ts:50;
+  src/aws-team-store.ts:35; src/aws-vectors.ts:9,35; src/aws-share-store.ts:15.
+- Slide 25 [save](SAVE-BOUNDARY.mmd), [index](INDEX-BOUNDARY.mmd),
+  [recall](RECALL-BOUNDARY.mmd): src/aws-team-store.ts:51–71,101–113,139.
+- Read the older proposed ARCHITECTURE.md and separate Invitation Lambda diagram
+  as historical design, not current runtime evidence.

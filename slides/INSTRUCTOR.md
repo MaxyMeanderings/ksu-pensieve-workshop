@@ -55,3 +55,7 @@ label this as a walkthrough, not a recorded successful product build.
 Give each SOLID letter about two minutes: definition, Pensieve example, audience question.
 The S boundary is existing code; O extension and I query-only refinement are proposed;
 L illustrates a behavioral contract; D shows the existing injection seam.
+
+Architecture walkthrough: allow about two minutes on slide 8 and three on
+slide 25 within existing section timing. Ask which boundary to inspect if save
+succeeds but recall fails. Distinguish code-defined topology from live audit.
