@@ -1,0 +1,19 @@
+{
+  "name": "ksu-pensieve-workshop",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build --without-notes",
+    "export": "slidev export --output ksu-pensieve.pdf",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@slidev/cli": "52.19.1",
+    "@slidev/theme-default": "0.25.0",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.55.0"
+  }
+}

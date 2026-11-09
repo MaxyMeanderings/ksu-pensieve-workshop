@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.pdf
+.DS_Store
+.slidev/
+PENSIEVE-AUTHOR-REVIEW-REQUEST.md
+
+# Local planning and coordination contain private session/account identifiers.
+TALK-BRIEF.md
+SLIDE-MAP.md
+FEATURE-WALKTHROUGH.md
