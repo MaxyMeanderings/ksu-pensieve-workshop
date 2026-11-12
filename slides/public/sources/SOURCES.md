@@ -105,11 +105,11 @@ indexing embeds documents. Hourly reconciliation supplements stream processing.
 
 ## Trust, works-cited, and repair-loop slides (added 2026-11-11)
 
-Slides 31–36, 39, 42, 45–47, 49, 51, and 56 were ported from the GSU Hack-Her-Thon
+Slides 31–36, 39, 42, 45–47, 49, 51, and 62 were ported from the GSU Hack-Her-Thon
 archived deck. That file is no longer in the GSU working tree; it was last present at
 commit 4e4e8ed2edcec7299fa403cccedeca65ba22487d as
 slides/archive/deck-before-coach-walkthrough.md. Slide footers cite its line numbers
-(for example "GSU archived deck:94"). Deck is now 57 slides; slide numbers 1–28 are unchanged.
+(for example "GSU archived deck:94"). Deck is now 63 slides; slide numbers 1–28 are unchanged.
 
 | KSU slide | GSU archived deck line | Change |
 | --- | --- | --- |
@@ -126,7 +126,7 @@ slides/archive/deck-before-coach-walkthrough.md. Slide footers cite its line num
 | 47 Completed execution ≠ verified requirements | 429 | Ported unchanged |
 | 49 Exercise · try to break it | 395 | Four inputs rewritten for the verifier |
 | 51 Exercise · show one trace | 496 | Ported unchanged |
-| 56 Works cited | 531 | New list built from this file's own references |
+| 62 Works cited | 531 | New list built from this file's own references |
 
 Real evidence behind slides 31, 32, 36, 45, 46, 47: the Nightshift retained run audit,
 https://github.com/doctor-ew/nightshift-community/blob/0dcbcb9/docs/WORKSHOP-V2-AUDIT.md
@@ -140,7 +140,7 @@ Synthetic material, not real data: handouts/SOURCE-PACKET.md (organizer counts a
 CLAIM-LEDGER.md, SOURCE-PACKET.md, and EVIDENCE-REVIEW.md are copied from the GSU
 slides/handouts/ directory. PROMPTS.md is adapted for the handoff verifier.
 
-Works cited slide (56): the eight links were requested on 2026-11-11 and each returned
+Works cited slide (62): the eight links were requested on 2026-11-11 and each returned
 HTTP 200. That confirms the pages exist; the pages were not re-read for this slide.
 
 ## Nightshift build-harness slides (added 2026-11-11)
@@ -175,3 +175,25 @@ Slide 38 shows the routes recorded for one run (author Codex, reviewer Claude), 
 model ranking. Slide 44 uses public/assets/stage-review-actual.png, copied from the
 Nightshift deck's public/assets/; it is an actual capture and shows a local file path
 from the presenter's laptop.
+
+## Nightshift 0.4.0 slides (added 2026-11-12)
+
+Slides 53–58 cover Nightshift 0.4.0 (https://github.com/doctor-ew/nightshift-community,
+tag v0.4.0). Slide 53 is adapted from docs/releases/0.4.0.md and docs/154/IMPLEMENTATION.md.
+Slide 55 follows the option text in scripts/nightshift-factory.sh (--project, --provider,
+--provider-policy, --model, --auth, --push). Slide 58 uses the plugin name nightshift
+(.claude-plugin/plugin.json) and commands/nightshift-eng.md, with the session-local plugin
+and namespaced-command behavior described at https://code.claude.com/docs/en/plugins/create.
+
+Slides 54–57 are the presenter's own throwaway-repository run on 2026-11-12, with Claude Code
+2.1.322, claude-only policy, subscription auth, and sonnet. The facts on them come from the
+run's retained files: init output and git log (slide 54), the task state file and
+proof-red.json (slide 56), and the implement-2 finding with id
+IMPL-CLASSIFICATION-REVIEW-MISSING (slide 57). Those files are on the presenter laptop and not
+published. The run did not complete; the cause of the missing review is not established.
+
+On 2026-11-12 the five linked v0.4.0 pages and the Claude plugin documentation each returned
+HTTP 200; their contents were not re-read in full. The shipped plugin.json at v0.4.0 declares
+repository as an object, which Claude Code 2.1.322 rejects, and still reports version 0.3.0
+while the VERSION file says 0.4.0. Slide 53's "default allowance is gone" refers to the
+release notes' statement that new work has no default work, call or repair ceiling.

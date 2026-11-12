@@ -959,6 +959,125 @@ class: content
 
 <div class="slide-number">KENNESAW STATE UNIVERSITY · 53</div>
 
+# What Nightshift 0.4.0<br>changes.
+
+<div class="four"><section><h3>Control room</h3><p>Task-first dashboard with six selectable stages and retained attempt history.</p></section><section><h3>No default ceilings</h3><p>Explicit operator limits and retained usage remain enforceable.</p></section><section><h3>Manual acceptance</h3><p>Bound to recorded operator authority, not to a model’s say-so.</p></section><section><h3>Pinned runtime</h3><p>Nested helpers use the selected runtime. Resume inspection checks the evidence.</p></section></div>
+<div class="takeaway">The default allowance that stopped the run on slide 43 is gone.</div>
+<p>Known limitation: the human-acceptance repair loop (issue 139) remains open.</p>
+
+<div class="source"><a href="https://github.com/doctor-ew/nightshift-community/blob/v0.4.0/docs/releases/0.4.0.md">Nightshift v0.4.0 release notes</a> · <a href="https://github.com/doctor-ew/nightshift-community/blob/v0.4.0/docs/154/IMPLEMENTATION.md">docs/154/IMPLEMENTATION.md</a> · adapted from Nightshift release notes · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+
+<!--
+Release 0.4.0 of the presenter's own open-source harness; one example of the pattern. Everything on this slide comes from the release notes and the issue 154 implementation record. The 3,600 active-second allowance that ended the slide 43 run was a default of that historical run; per the release notes new work has no default work, call or repair ceiling, and explicit operator limits and retained usage remain enforceable. That is a policy change, not evidence that unlimited work is better: ask students what limit they would set. Manual acceptance now needs task-bound, recorded operator authority, which is the repair for the case where the harness had accepted a human-only check. Issue 139, the human-acceptance code-repair loop, is still listed as a known limitation. The release notes name the evidence: pull requests 132, 136, 137 and 140, and issues 138 and 139. Do not claim this release makes agent runs reliable on arbitrary projects.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 54</div>
+
+# Walkthrough 1 ·<br>Prepare the project.
+
+<div class="terminal"><div class="terminal-label">ONE-TIME SETUP · IN THE PROJECT</div><pre>bash "$NS/scripts/nightshift-factory.sh" \
+  init claude "$PWD" --include TASK.md</pre></div>
+<div class="terminal"><div class="terminal-label">TASK.md · THE BRIEF</div><pre>Add duration.py with format_seconds(n) returning "M:SS"
+for nonnegative integers (125 -> "2:05").
+Negative integers, booleans and non-integers raise ValueError.</pre></div>
+<p>Init committed .nightshift.toml, routing.json and the brief.</p>
+
+<div class="source"><a href="https://github.com/doctor-ew/nightshift-community/blob/v0.4.0/scripts/nightshift-factory.sh">Nightshift v0.4.0 · scripts/nightshift-factory.sh</a> · Actual receipts from a throwaway-repository run, 2026-11-12 (presenter laptop; not published) · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+
+<!--
+Step 1 of 4. Start from a small git repository with a passing test suite; this throwaway one had a single smoke test. Without this init step the factory command stops with MANIFEST_MISSING, which is what happened on the first attempt. Init reported status ready and committed the project manifest, routing file and the brief as one baseline commit. The brief is the input: a few acceptance cases in plain language, abridged here from the real TASK.md. NS is the path to a Nightshift 0.4.0 checkout. Optional mex graph indexing reported itself unavailable during init and did not block it.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 55</div>
+
+# Walkthrough 2 ·<br>Run it.
+
+<div class="terminal"><div class="terminal-label">TERMINAL · PER BRIEF OR TICKET</div><pre>bash "$NS/scripts/nightshift-factory.sh" \
+  TASK.md --project "$PWD" \
+  --provider claude --model sonnet \
+  --provider-policy claude-only \
+  --auth subscription</pre></div>
+<p>Use a brief file or an issue URL. Nothing is pushed unless you add --push.</p>
+<div class="takeaway">claude-only keeps specialist calls on Claude, too.</div>
+
+<div class="source"><a href="https://github.com/doctor-ew/nightshift-community/blob/v0.4.0/scripts/nightshift-factory.sh">Nightshift v0.4.0 · scripts/nightshift-factory.sh</a> · options --project, --provider, --provider-policy, --model, --auth, --push · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+
+<!--
+Step 2 of 4. The same command takes a ticket URL in place of the brief file. This run also passed --dashboard off, --dashboard-browser off and --base main so it would not open a browser or look for a remote; those are optional. The log confirmed claude-only policy and that paid API mode was disabled with no automatic billing fallback. The run took several minutes with only a working message on screen, so tell students to expect a wait and show the stages on the next slide. Do not run this live unless it has been rehearsed.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 56</div>
+
+# Walkthrough 3 ·<br>Watch the stages.
+
+<div class="terminal"><div class="terminal-label">RETAINED ATTEMPT RECEIPTS · SONNET VIA CLAUDE</div><pre>product       pass   3m 27s
+adversarial   pass   2m 11s
+implement     fail   1m 35s
+implement     fail   0m 44s</pre></div>
+<p>The controller committed a sealed spec, then recorded the new tests failing first: 17 failing assertions, none passing.</p>
+
+<div class="source">Actual receipts from a throwaway-repository run, 2026-11-12 (presenter laptop; not published) · state.json and proof-red.json · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+
+<!--
+Step 3 of 4. These durations are the recorded start and finish times of each attempt, from the task state file. Product wrote the spec and the six behavior scenarios; Adversarial checked its citations and passed; the controller then sealed the spec in a commit and, during Implementation, recorded RED: the new tests fail before any implementation exists, with 17 relevant assertion failures, zero passing and no import errors. Implementation was then attempted twice and failed both times. Say plainly that this run did not reach Review, Drift or QA. The durations are for one tiny task and are not a benchmark.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 57</div>
+
+# Walkthrough 4 ·<br>Read the result.
+
+<div class="two"><section><h3>What held</h3><p>Spec and failing tests are sealed in commits.</p><p>Both failed attempts are retained.</p><p>Nothing was merged or pushed.</p></section><section><h3>Why it stopped</h3><p>Implementation needs a recorded independent review of the test classification.</p><p>Adversarial did not record one, and the worker would not forge it.</p></section></div>
+<div class="takeaway">The gate held. It would not invent the missing review.</div>
+<p>We did not establish why the review was not recorded.</p>
+
+<div class="source">Actual receipts from a throwaway-repository run, 2026-11-12 (presenter laptop; not published) · implement-2 finding IMPL-CLASSIFICATION-REVIEW-MISSING · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+
+<!--
+Step 4 of 4. Read the result, not the exit message. The implementation worker's finding says proof sealing was blocked with reason classification_unreviewed: every applicability review in the behavior scenarios was null and the passed Adversarial receipt carried no classification-review evidence. It said the attestation must come from an independent reviewer and be recorded by the controller, that the implement stage cannot supply or forge it, and that GREEN, the passing implementation, was therefore not written. That is the harness refusing to turn a missing check into a pass, the same principle as slide 44 and the previous allowance story. It is also a limitation: we do not know why Adversarial recorded no review for this tiny spec, and the Adversarial log shows an unrelated-looking sandbox warning, child setpgid operation not permitted, so the test environment may have contributed. Do not claim Nightshift completes arbitrary tasks.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 58</div>
+
+# Optional · inside<br>Claude Code.
+
+<div class="terminal"><div class="terminal-label">TERMINAL · SESSION-LOCAL PLUGIN</div><pre>NIGHTSHIFT_RUNTIME_HOME="$NS" \
+NIGHTSHIFT_PROVIDER_POLICY=claude-only \
+claude --plugin-dir "$NS"</pre></div>
+<div class="terminal"><div class="terminal-label">INSIDE CLAUDE CODE</div><pre>/nightshift:nightshift-eng &lt;ticket-url&gt;</pre></div>
+<p>Needs the manifest fix: v0.4.0 declares repository as an object, which Claude Code 2.1.322 rejects.</p>
+
+<div class="source"><a href="https://github.com/doctor-ew/nightshift-community/blob/v0.4.0/commands/nightshift-eng.md">Nightshift v0.4.0 · commands/nightshift-eng.md</a> · <a href="https://code.claude.com/docs/en/plugins/create">Claude Code plugin documentation</a> · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
+
+<!--
+Optional slide; skip it if the fix is not released. Tested 2026-11-12 with Claude Code 2.1.322: as shipped at v0.4.0 the plugin fails to load because .claude-plugin/plugin.json has repository as an object. With repository set to the URL string, validation passes, 23 nightshift: commands register, and /nightshift:nightshift-help runs. The full /nightshift:nightshift-eng pipeline was not run this way. Plugin commands are namespaced and the plugin is loaded for this session only. On the presenter laptop the unqualified /nightshift-eng and nightshift still point to the private checkout; use the namespaced command or the NS path.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 59</div>
+
 # Remember the decision.<br>Keep the limitation.
 
 <div class="three"><section><h3>Decision</h3><p>Verify through the intended recipient’s read.</p></section><section><h3>Evidence</h3><p>Requirement, actual response, source revision.</p></section><section><h3>Limitation</h3><p>Point-in-time result; indexing is separate.</p></section></div>
@@ -973,7 +1092,7 @@ Show a completed decision artifact, not a whole chat dump. Mark the fixture synt
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 54</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 60</div>
 
 # The next session starts<br>with better orientation.
 
@@ -989,7 +1108,7 @@ Return to OODA. Ask what should be invalidated if the service, identity, permiss
 class: closing
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 55</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 61</div>
 
 # Leave with one<br>defensible engineering story.
 
@@ -1005,7 +1124,7 @@ Reserve the final seven minutes for questions and next steps. This deck does not
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 56</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 62</div>
 
 # Works cited.
 
@@ -1021,7 +1140,7 @@ Each reference supports a specific claim on a specific slide; sources/SOURCES.md
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 57</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 63</div>
 
 # Sources and take-home kit.
 

@@ -138,3 +138,60 @@
 - Not done: no timed rehearsal. Core path is now 52 slides, about 78 minutes plus
   exercise and questions (see INSTRUCTOR.md); the deployed site still shows the old deck
   until this is pushed to main.
+
+## Nightshift 0.4.0 slides — 2026-11-12
+
+- Added slides 53 (what 0.4.0 changes), 54 (run from the terminal) and 55 (run inside
+  Claude Code). Deck is now 60 slides. Slides 1–52 keep their numbers; the old 53–57 are
+  now 56–60. Section rail "Remember" now starts at 56.
+- Passed: production build; slides 53–56 exported as PNG and viewed. No clipping or overlap.
+- Passed: option names on slide 54 match scripts/nightshift-factory.sh in the release
+  checkout; the five linked v0.4.0 pages and the plugin documentation returned HTTP 200.
+- Not done: the commands were not executed. Slide 55 relies on the presenter's report that
+  the namespaced command works; the shipped plugin.json still reports 0.3.0.
+- Passed: full PDF export; page count read back with pdf-lib: 60.
+- Not done: no timed rehearsal.
+
+## Nightshift 0.4.0 command test — 2026-11-12
+
+Throwaway repository and an isolated NIGHTSHIFT_HOME, both in the session scratchpad. No
+remote, no push. Claude Code 2.1.322, claude-only policy, subscription auth, sonnet.
+
+- Passed: `nightshift-factory.sh --help` lists every option used on slide 54.
+- Found: in a new project the slide 54 command stops with MANIFEST_MISSING until
+  `nightshift-factory.sh init claude "$PWD"` is run once. Init succeeded (mex graph
+  indexing was reported unavailable, which did not block it). Slide 54 now shows the init step.
+- Partly passed: with the project initialized, the command ran Product and Adversarial to
+  a pass on sonnet and the claude provider, with paid API mode disabled. Implementation then
+  failed twice and the run stopped blocked (exit 1); nothing was merged. The worker reported
+  that the proof seal was blocked with classification_unreviewed, because the passed
+  Adversarial receipt has no classification-review evidence. The Adversarial log also showed
+  `child setpgid ... Operation not permitted`, so the test sandbox may have contributed.
+  Cause not established. A completed end-to-end run was NOT demonstrated.
+- Failed: slide 55. `claude plugin validate` reports `repository: Invalid input: expected
+  string, received object` for .claude-plugin/plugin.json at v0.4.0, and Claude Code
+  2.1.322 reports "Failed to load plugin", so `/nightshift:nightshift-eng` is not
+  registered and `-p "/nightshift:nightshift-help"` was not available. In a scratch copy with
+  `repository` set to the URL string, validation passed and 23 `nightshift:` commands
+  registered, including `nightshift:nightshift-eng`. The plugin command itself was not run.
+- Not changed: the Nightshift release checkout was not modified.
+
+## Nightshift walkthrough and corrections — 2026-11-12
+
+- Replaced slides 54–55 with a four-step walkthrough (54 prepare, 55 run, 56 watch the
+  stages, 57 read the result) and a corrected optional slide 58 (inside Claude Code). Deck
+  is now 63 slides; slides 1–53 keep their numbers, the old 56–60 are now 59–63, and the
+  "Remember" rail section starts at 59.
+- The walkthrough facts come from the throwaway run's retained files: product and
+  adversarial passed (3m 27s, 2m 11s), the spec and failing tests were sealed in commits, 17
+  assertions failed and none passed in RED, and implementation failed twice (1m 35s, 44s).
+  Nothing was merged or pushed. Slide 57 says the cause was not established.
+- Fixed in the Nightshift release worktree, uncommitted: .claude-plugin/plugin.json
+  `repository` is now a URL string. `claude plugin validate` passes, `nightshift:nightshift-eng`
+  registers from that path, and `/nightshift:nightshift-help` ran and returned the command
+  map. The full `/nightshift:nightshift-eng` pipeline was not run. The v0.4.0 tag still has
+  the old manifest until the change is committed and released.
+- Passed: production build; full PDF export, 63 pages read back with pdf-lib; slides 54–58
+  exported as PNG and each viewed, no clipping.
+- Not done: no completed end-to-end Nightshift run and no timed rehearsal. The section above
+  titled "command test" uses slide numbers from before this change.

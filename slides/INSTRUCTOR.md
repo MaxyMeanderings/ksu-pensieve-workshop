@@ -5,9 +5,9 @@ Target duration: approximately 90 minutes. Speaker allocation remains open.
 
 ## Proposed timing
 
-The deck is 57 slides: the original 37, 14 trust, works-cited, and repair-loop
-slides ported from the GSU archived deck, and 6 build-harness slides adapted from the
-Nightshift talk deck. Presenting all 57 does not fit in 90 minutes with the
+The deck is 63 slides: the original 37, 14 trust, works-cited, and repair-loop
+slides ported from the GSU archived deck, 6 build-harness slides adapted from the
+Nightshift talk deck, and 6 slides on Nightshift 0.4.0 (what changes, a four-step walkthrough, and an optional plugin slide). Presenting all 63 does not fit in 90 minutes with the
 exercises. Timing below is a proposal and has not been rehearsed.
 
 | Slides | Purpose | Core or optional |
@@ -30,10 +30,13 @@ exercises. Timing below is a proposal and has not been rehearsed.
 | 50 | Your turn: reject one unsupported claim (2–3 min pair exercise) | Core |
 | 51 | Exercise: show one trace (8 min) | Optional |
 | 52 | Nightshift: human checkpoints | Core |
-| 53–55 | Retain decision, next session, closing | Core |
-| 56–57 | Works cited and take-home kit | Core (show briefly) |
+| 53 | Nightshift 0.4.0: what changes | Optional |
+| 54–57 | Nightshift walkthrough: prepare, run, watch the stages, read the result | Optional |
+| 58 | Nightshift inside Claude Code (needs the manifest fix) | Optional |
+| 59–61 | Retain decision, next session, closing | Core |
+| 62–63 | Works cited and take-home kit | Core (show briefly) |
 
-Core is 52 slides. At roughly 1.5 minutes per slide that is about 78 minutes. Add the
+Core is 52 slides (slides 53–58 are optional). At roughly 1.5 minutes per slide that is about 78 minutes. Add the
 slide 50 pair exercise and seven minutes of questions and the total is about 88 minutes
 with no slack. If a rehearsal runs long, cut the six Nightshift slides first (29, 30, 38,
 43, 44, 52); the trust and repair arc stands without them. Add an optional exercise only
@@ -44,8 +47,8 @@ For linear presentation, cover 15–28 in order. Avoid repeatedly jumping forwar
 
 ## Ported trust and works-cited slides
 
-Slides 31–36, 39, 42, 45–47, 49, 51, and 56 come from the GSU archived deck (see
-sources/SOURCES.md for the commit and line numbers). Slides 31–36, 42, 46, 47, 51, and 56
+Slides 31–36, 39, 42, 45–47, 49, 51, and 62 come from the GSU archived deck (see
+sources/SOURCES.md for the commit and line numbers). Slides 31–36, 42, 46, 47, 51, and 62
 are close ports. Slides 39 and 49 were rewritten around the handoff verifier. Slide 45
 keeps the original table because it shows a real audit finding; its columns are the
 GSU coaching prompt's four requirements, not the verifier's. The reviewer error on slide 46
@@ -60,6 +63,17 @@ completed run: it stopped at its work allowance and was merged after explicit op
 approval. Do not say all six stages passed or that it completed automatically. Slide 38
 shows the routes recorded for one run, not a model ranking. Slide 44 is a screenshot of
 the real Review panel and shows a local file path from the author's laptop.
+
+Slides 53–58 cover Nightshift 0.4.0 (release notes at tag v0.4.0). Slides 54–57 walk
+through one real run on a throwaway repository on 2026-11-12: prepare (init plus a brief),
+run, watch the stages, read the result. That run did not complete: Product and Adversarial
+passed, the controller sealed the spec and recorded the new tests failing, and
+Implementation stopped because the independent classification review was not recorded. Say
+so. The slides present it as the harness refusing to forge a missing check, and they state
+that the cause is not established. Do not run the commands live unless rehearsed; $NS is a
+placeholder for a Nightshift checkout. Slide 58 needs the plugin manifest fix (repository
+as a string), which is uncommitted in the release worktree; skip the slide unless it is
+released.
 
 ## Demonstration
 

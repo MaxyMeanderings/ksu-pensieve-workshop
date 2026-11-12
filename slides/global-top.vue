@@ -9,7 +9,7 @@ const sections = [
   { label: 'Act + inspect', start: 15 },
   { label: 'Trust + works cited', start: 29 },
   { label: 'Challenge + repair', start: 36 },
-  { label: 'Remember', start: 53 },
+  { label: 'Remember', start: 59 },
 ]
 const active = computed(() => sections.reduce((found, s, i) => nav.currentPage.value >= s.start ? i : found, 0))
 </script>
