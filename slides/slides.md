@@ -36,7 +36,7 @@ class: content
 
 # Your guides
 
-<div class="presenters"><div class="presenter"><img src="/assets/tyler.jpeg" alt="Tyler Sztuka" /><div><h3>Tyler Sztuka</h3><p class="role">Claude Community Ambassador<br>Atlanta</p><p>Building practical experiences with Claude.</p></div></div><div class="presenter"><img src="/assets/drew.jpg" alt="Drew Schillinger" /><div><h3>Drew Schillinger</h3><p class="role">Enterprise Architect<br>@doctorew</p><p>Connecting specifications, agentic workflows, and human judgment.</p></div></div></div>
+<div class="presenters"><div class="presenter"><img src="/assets/tyler.jpeg" alt="Tyler Sztuka" /><div><h3>Tyler Sztuka</h3><p class="role">Founder, SZD Labs<br>Applied AI Implementation<br>Claude Community</p><p>Building practical experiences with Claude.</p></div></div><div class="presenter"><img src="/assets/drew.jpg" alt="Drew Schillinger" /><div><h3>Drew Schillinger</h3><p class="role">Enterprise Architect<br>@doctorew</p><p>Connecting specifications, agentic workflows, and human judgment.</p></div></div></div>
 
 <div class="source">Presenter confirmation: TALK-BRIEF.md · portrait provenance: ASSETS.md · <PublicLink path="sources/SOURCES.md">Sources</PublicLink></div>
 
