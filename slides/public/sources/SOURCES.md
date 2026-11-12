@@ -102,3 +102,76 @@ indexing embeds documents. Hourly reconciliation supplements stream processing.
   [recall](RECALL-BOUNDARY.mmd): src/aws-team-store.ts:51–71,101–113,139.
 - Read the older proposed ARCHITECTURE.md and separate Invitation Lambda diagram
   as historical design, not current runtime evidence.
+
+## Trust, works-cited, and repair-loop slides (added 2026-11-11)
+
+Slides 31–36, 39, 42, 45–47, 49, 51, and 56 were ported from the GSU Hack-Her-Thon
+archived deck. That file is no longer in the GSU working tree; it was last present at
+commit 4e4e8ed2edcec7299fa403cccedeca65ba22487d as
+slides/archive/deck-before-coach-walkthrough.md. Slide footers cite its line numbers
+(for example "GSU archived deck:94"). Deck is now 57 slides; slide numbers 1–28 are unchanged.
+
+| KSU slide | GSU archived deck line | Change |
+| --- | --- | --- |
+| 31 A green badge is a claim | 94 | Component ported; added "case 7" label |
+| 32 A URL is a pointer | 261 | Ported unchanged |
+| 33 Works cited: make each claim traceable | 277 | Ported unchanged |
+| 34 Citation presence ≠ claim support | 293 | Ported unchanged |
+| 35 Exercise · audit the claim | 310 | Ported unchanged |
+| 36 Adversarial means skeptical | 327 | Ported unchanged |
+| 39 Make the behavior observable | 360 | Quoted input rewritten for the verifier |
+| 42 Repair the smallest thing | 446 | Ported unchanged |
+| 45 Every response can violate more than one requirement | 378 | Ported unchanged; columns are the GSU coach's requirements |
+| 46 A quote must belong to the case it cites | 412 | Ported unchanged |
+| 47 Completed execution ≠ verified requirements | 429 | Ported unchanged |
+| 49 Exercise · try to break it | 395 | Four inputs rewritten for the verifier |
+| 51 Exercise · show one trace | 496 | Ported unchanged |
+| 56 Works cited | 531 | New list built from this file's own references |
+
+Real evidence behind slides 31, 32, 36, 45, 46, 47: the Nightshift retained run audit,
+https://github.com/doctor-ew/nightshift-community/blob/0dcbcb9/docs/WORKSHOP-V2-AUDIT.md
+(read 2026-11-11). It records an 8/8 grader result for a prompt-only coaching agent,
+and its finding 1 is the unsourced competitor claims in case 7 (slide 31). Its finding 2 is a
+reviewer citing case 8 evidence that the case 8 response does not contain (slide 46).
+Slide 31's excerpt is an adapted teaching excerpt, not a verbatim transcript.
+
+Synthetic material, not real data: handouts/SOURCE-PACKET.md (organizer counts and the
+.test URL), the slide 39 and 49 inputs, and the slide 45 check marks. Handouts
+CLAIM-LEDGER.md, SOURCE-PACKET.md, and EVIDENCE-REVIEW.md are copied from the GSU
+slides/handouts/ directory. PROMPTS.md is adapted for the handoff verifier.
+
+Works cited slide (56): the eight links were requested on 2026-11-11 and each returned
+HTTP 200. That confirms the pages exist; the pages were not re-read for this slide.
+
+## Nightshift build-harness slides (added 2026-11-11)
+
+Slides 29, 30, 38, 43, 44, and 52 were adapted from the Nightshift talk deck, file
+slides/shared-core.md in the local nightshift-community checkout (branch
+nightshift/talks-memory-security). Footers say "adapted from Nightshift talk deck".
+Nightshift is the presenter's own open-source harness, shown as one example.
+
+| KSU slide | shared-core.md line | Cited files and links |
+| --- | --- | --- |
+| 29 The harness keeps the workflow | 5 | AGENTS.md; skills/nightshift/SKILL.md; routing.json; scripts/nightshift-pipeline.py |
+| 30 Six stages retain their evidence | 47 | commands/nightshift-{product,adversarial,implement,review,drift,qa}.md |
+| 38 Challenge the author's assumptions | 103 | routing.json; docs/133/IMPLEMENTATION.md |
+| 43 We pointed it at itself | 219 | Issues 138 and 139; pull request 140 |
+| 44 Review keeps the failed attempt | 478 | docs/138/REVIEW.md; docs/138/IMPLEMENTATION.md; screenshot |
+| 52 Human checkpoints | 235 | AGENTS.md; commands/nightshift-implement.md |
+
+Pinned links use commit 4f9f8e7 of https://github.com/doctor-ew/nightshift-community.
+On 2026-11-11 the issue and pull request pages (138, 139, 140) and the pinned files
+AGENTS.md, routing.json, commands/nightshift-adversarial.md,
+commands/nightshift-implement.md, docs/133/IMPLEMENTATION.md, docs/138/REVIEW.md, and
+docs/138/IMPLEMENTATION.md each returned HTTP 200. That confirms the pages exist; their
+contents were not re-read for this deck. The other cited paths exist in the local checkout.
+
+Slide 43 is a real, partially completed run (task 138): Review failed first, the repair
+passed re-review, QA failed on a required human visual case, and the allowance was
+exhausted before the controller's misrouted continuation could do substantive work.
+The merge (pull request 140) followed an explicit operator instruction. Issue 139 records
+the sequencing defect. The deck does not claim all six stages passed.
+Slide 38 shows the routes recorded for one run (author Codex, reviewer Claude), not a
+model ranking. Slide 44 uses public/assets/stage-review-actual.png, copied from the
+Nightshift deck's public/assets/; it is an actual capture and shows a local file path
+from the presenter's laptop.
