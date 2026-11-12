@@ -132,3 +132,14 @@
 .slidev-layout .architecture-note{font-size:17px;line-height:1.4;margin:10px 0}
 .boundary-label{font-size:13px;color:#efd29c;letter-spacing:1px;margin:8px 0 0}
 .boundary-diagram{height:91px}.boundary-diagram svg{width:100%;height:91px;max-width:100%!important}
+
+/* API-credit setup slides, reused from the GSU HackHers 2026 deck. */
+.slidev-layout .credits{display:grid;grid-template-columns:1.4fr 1fr;gap:36px;align-items:start;}
+.slidev-layout .credits ol{list-style:decimal;margin:12px 0 0;padding-left:28px;}
+.slidev-layout .credits li{font-size:19px;line-height:1.42;margin:9px 0;}
+.slidev-layout .qr{display:flex;flex-direction:column;align-items:center;gap:12px;text-decoration:none;color:#c8b8ab;font-size:13px;letter-spacing:1px;}
+.slidev-layout .qr img{width:300px;height:300px;background:#fff;padding:14px;border-radius:8px;box-sizing:border-box;}
+.slidev-layout .qr:hover,.slidev-layout .qr:focus-visible{color:#fff;outline:1px solid #d97757;}
+.slidev-layout .shot{display:block;max-height:350px;max-width:100%;width:auto;margin:0 auto;border:1px solid #59524b;border-radius:8px;}
+.slidev-layout .shot-short{max-height:230px;margin-top:4px;}
+.slidev-layout .shot-caption{font-size:17px;line-height:1.45;color:#d8c4b5;margin:14px auto 0;text-align:center;max-width:900px;}

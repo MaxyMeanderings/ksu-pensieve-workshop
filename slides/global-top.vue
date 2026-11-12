@@ -3,13 +3,14 @@ import { computed } from 'vue'
 import { useNav } from '@slidev/client'
 const nav = useNav()
 const sections = [
-  { label: 'The problem', start: 1 },
-  { label: 'Observe + orient', start: 5 },
-  { label: 'Decide', start: 10 },
-  { label: 'Act + inspect', start: 15 },
-  { label: 'Trust + works cited', start: 29 },
-  { label: 'Challenge + repair', start: 36 },
-  { label: 'Remember', start: 59 },
+  { label: 'Set up', start: 1 },
+  { label: 'The problem', start: 7 },
+  { label: 'Observe + orient', start: 9 },
+  { label: 'Decide', start: 14 },
+  { label: 'Act + inspect', start: 19 },
+  { label: 'Trust + works cited', start: 33 },
+  { label: 'Challenge + repair', start: 40 },
+  { label: 'Remember', start: 63 },
 ]
 const active = computed(() => sections.reduce((found, s, i) => nav.currentPage.value >= s.start ? i : found, 0))
 </script>

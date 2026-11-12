@@ -3,6 +3,15 @@
 Presenters: Drew Schillinger and Tyler Sztuka. Audience: KSU CS students.
 Target duration: approximately 90 minutes. Speaker allocation remains open.
 
+## API-credit setup (slides 3–6)
+
+Slides 3–6 are the API-credit onboarding from the GSU HackHers deck: claim the credits
+by QR, the claim form, the Console balance, and `/login` with the Console account.
+Run them first, about 5 minutes, before any hands-on work. The QR opens
+https://platform.claude.com/offers/108423d8-32e1-498a-a482-d9d4ead9d28a. The claim
+form screenshot on slide 4 is from an earlier offer page and shows that event's header.
+Slide numbers in the table below predate this insert: add 4 to every number from 3 on.
+
 ## Proposed timing
 
 The deck is 63 slides: the original 37, 14 trust, works-cited, and repair-loop

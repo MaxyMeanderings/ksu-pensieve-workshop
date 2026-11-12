@@ -50,6 +50,71 @@ class: content
 
 <div class="slide-number">KENNESAW STATE UNIVERSITY · 03</div>
 
+# Claim your API credits.
+
+<div class="credits"><div><p>Anthropic is covering your Claude Code API usage tonight.</p><ol><li>Scan the code. Sign in to the Claude Console or create an account.</li><li>Submit your Console <b>Organization ID</b>, not a Claude.ai user ID. A user ID is rejected.</li><li>Wait a couple of minutes, then sign in to Claude Code with that account.</li></ol></div><a class="qr" href="https://platform.claude.com/offers/108423d8-32e1-498a-a482-d9d4ead9d28a" target="_blank" rel="noopener noreferrer" aria-label="Open the Anthropic API credits offer in a new tab"><img src="/assets/api-credits-qr.png" alt="QR code linking to the Anthropic API credits offer" /><span>Scan, or click to open ↗</span></a></div><div class="takeaway">Do this first. One claim each. API only: Claude Code in the terminal or VS Code, not the Claude.ai or desktop app. The link expires; the date is on the page.</div>
+
+<div class="source">Anthropic API credits offer · organizer’s QR code · setup slides reused from the GSU HackHers 2026 deck</div>
+
+<!--
+Have everyone scan now, before any hands-on work. Credits are issued within a couple of minutes of a valid claim. The common failure is pasting a Claude.ai user ID instead of the Console Organization ID, which the system rejects; they can resubmit with the right ID. Each person can claim once, so they should be signed in to the Console account they will use in Claude Code. Credits cover API usage only, not claude.ai subscriptions or the desktop app. Never project an API key.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 04</div>
+
+# Apply for credits. Two minutes.
+
+<img class="shot" src="/assets/api-credits-form.png" alt="Anthropic API credits application page with the apply-for-credits form" /><p class="shot-caption">Sign in, paste your Console <b>Organization ID</b>, submit. Find it in the Console under Settings → Organization. Credits cover the Claude API only, not Claude.ai, and each person can claim once.</p>
+
+<div class="source">Screenshot: Anthropic API credits application page, organizer’s account · fields shown are the organizer’s, not a template</div>
+
+<!--
+Walk through the form once on the projector. This screenshot is from an earlier offer page; replace it with this event's page if there is time. Show where the Organization ID lives in the Console so nobody pastes a Claude.ai user ID, and point out the link expiration date on the page.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 05</div>
+
+# Your credits live in the Claude Console.
+
+<img class="shot" src="/assets/claude-console-dashboard.png" alt="Claude Console dashboard showing organization credits, monthly spend, and available models" /><p class="shot-caption">Claude Console dashboard · <b>Organization credits</b> is the balance Claude Code draws from. It updates a couple of minutes after a valid claim. You do not need to create an API key tonight.</p>
+
+<div class="source">Screenshot: Claude Console dashboard, organizer’s account, July 2026 · balances shown are the organizer’s</div>
+
+<!--
+Point at Organization credits and Spend this month. Everything else on this page is optional. A student who still sees a zero balance after a few minutes most likely submitted a Claude.ai user ID; have them resubmit with the Console Organization ID. Meanwhile pair them with a working laptop and keep going.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 06</div>
+
+# Sign in to Claude Code with those credits.
+
+<div class="two"><div class="terminal"><div class="terminal-label">Terminal · then inside Claude Code</div><pre>claude
+/login</pre></div><div><p>Choose <b>2. Anthropic Console account · API usage billing</b>.</p><p>Your browser opens. Sign in with the account that holds the credits, then return to the terminal.</p></div></div><img class="shot shot-short" src="/assets/claude-code-login.png" alt="Claude Code login prompt with Anthropic Console account selected" />
+
+<div class="source">Screenshot: Claude Code /login prompt, organizer’s terminal · <a href="https://code.claude.com/docs/en/quickstart">Claude Code quickstart</a></div>
+
+<!--
+Option 1 uses a personal claude.ai subscription and will not draw on the sponsored credits. Option 2 is the one for tonight. A student already signed in with a subscription can run /login again to switch. The access check is a real response from Claude, not a version number.
+-->
+
+---
+class: content
+---
+
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 07</div>
+
 # What should survive<br>the next session?
 
 <div class="three"><section><h3>The decision</h3><p>What did we choose—and why?</p></section><section><h3>The evidence</h3><p>What observation supports it?</p></section><section><h3>The limit</h3><p>What is still unknown?</p></section></div><p class="takeaway">A useful memory helps the next person reason.</p>
@@ -64,7 +129,7 @@ Invite one example from a group project. Distinguish a decision record from a ra
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 04</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 08</div>
 
 # One feature.<br>The whole engineering loop.
 
@@ -80,7 +145,7 @@ class: content
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 05</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 09</div>
 
 # “Saved” was true.<br>The handoff still failed.
 
@@ -96,7 +161,7 @@ Actual historical incident, paraphrased. Do not display account identifiers, cre
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 06</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 10</div>
 
 # Observe. Orient.<br>Decide. Act.
 
@@ -112,7 +177,7 @@ Introduce OODA terms and keep returning to this loop. The software examples are 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 07</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 11</div>
 
 # Observe the user’s result.
 
@@ -128,7 +193,7 @@ Ask the audience which observation they would collect first. A server receipt ca
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 08</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 12</div>
 
 # Where does a memory go?
 
@@ -162,7 +227,7 @@ Builder-reviewed topology at c1b093bbb055e7de65f8c23125425aa506a8f068. Spend abo
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 09</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 13</div>
 
 # Memory is context.<br>It is not authority.
 
@@ -178,7 +243,7 @@ Do not treat a stored citation as proof of what the page says. Imported provenan
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 10</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 14</div>
 
 # Decide what “verified” means.
 
@@ -194,7 +259,7 @@ This is the new feature we are specifying, not an assertion of an existing produ
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 11</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 15</div>
 
 # Write the smallest<br>behavior brief.
 
@@ -210,7 +275,7 @@ Keep the scope narrow enough for a visible development cycle. Account creation, 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 12</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 16</div>
 
 # Define the cases<br>before the implementation.
 
@@ -226,7 +291,7 @@ Use synthetic Alice and Bob. Do not disclose the existence of an inaccessible po
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 13</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 17</div>
 
 # Give Claude a contract<br>it can challenge.
 
@@ -242,7 +307,7 @@ This is a teaching prompt, not a historical transcript. Show the spec Claude pro
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 14</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 18</div>
 
 # Approve the behavior,<br>not the confident wording.
 
@@ -258,7 +323,7 @@ Ask students to identify a missing denial case before the build. Approval is a d
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 15</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 19</div>
 
 # Act: build one narrow slice.
 
@@ -274,7 +339,7 @@ Demo option: implement in a separate teaching folder against a synthetic reader 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 16</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 20</div>
 
 # Keep the dependencies<br>outside the decision.
 
@@ -290,7 +355,7 @@ These are responsibilities, not mandatory microservices. Show that the verifier 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 17</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 21</div>
 
 # DRY — Don’t Repeat Yourself
 
@@ -314,7 +379,7 @@ Show access at lines 32–36, then its selected-read and save callers. Test line
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 18</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 22</div>
 
 # S — Single Responsibility
 
@@ -332,7 +397,7 @@ SOLID names five design principles. Start with Single Responsibility. This exist
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 19</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 23</div>
 
 # O — Open/Closed
 
@@ -350,7 +415,7 @@ The interface is an extension point, not a promise that requirements never chang
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 20</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 24</div>
 
 # L — Liskov Substitution
 
@@ -368,7 +433,7 @@ Authored substitution example grounded in the existing adapter: it requires cosi
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 21</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 25</div>
 
 # I — Interface Segregation
 
@@ -386,7 +451,7 @@ The existing store both writes and queries vectors, so the two-method interface 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 22</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 26</div>
 
 # D — Dependency Inversion
 
@@ -409,7 +474,7 @@ Show the two-method AwsVectorIndex interface at lines 10–12 and injected fake 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 23</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 27</div>
 
 # ACID — four transaction properties
 
@@ -427,7 +492,7 @@ Use the next slide to ground these definitions in an actual transaction. Consist
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 24</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 28</div>
 
 # ACID: protect the concurrent decision.
 
@@ -450,7 +515,7 @@ Atomicity: all or none of this transaction. Consistency: preserve invariants. Is
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 25</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 29</div>
 
 # Saved is not yet indexed.
 
@@ -493,7 +558,7 @@ Spend about three minutes. Staging spans multiple transactions; the final commit
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 26</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 30</div>
 
 # Big O — how work grows
 
@@ -511,7 +576,7 @@ Define the variables before analyzing anything. The AWS path queries a hosted ve
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 27</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 31</div>
 
 # Big O: inspect the local work.
 
@@ -535,7 +600,7 @@ R = materialized rows, K = returned candidates. Show full filtering at source li
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 28</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 32</div>
 
 # CoC — Convention over Configuration
 
@@ -557,7 +622,7 @@ This is the pipeline meaning of CoC: Convention over Configuration, not separati
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 29</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 33</div>
 
 # The harness keeps<br>the workflow.
 
@@ -573,7 +638,7 @@ This is the build harness behind the evidence on the next slides, shown as four 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 30</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 34</div>
 
 # Six stages retain<br>their evidence.
 
@@ -589,7 +654,7 @@ Walk the order once. Each stage leaves an attempt-specific receipt, and the cont
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 31</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 35</div>
 
 # A green badge is a claim.
 
@@ -605,7 +670,7 @@ Ask pairs to vote before revealing: does 8 / 8 mean the agent works? Adapted tea
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 32</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 36</div>
 
 # A URL is a pointer.<br>It is not proof.
 
@@ -621,7 +686,7 @@ This is the evidence-handling rule for the rest of the session. A model without 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 33</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 37</div>
 
 # Works cited: make each<br>claim traceable.
 
@@ -637,7 +702,7 @@ Use the claim ledger handout. This is a practical traceability format, not a sub
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 34</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 38</div>
 
 # Citation presence<br>≠ claim support.
 
@@ -654,7 +719,7 @@ All numbers are synthetic classroom data. The source does not show market-wide d
 class: content exercise
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 35</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 39</div>
 
 # Exercise · audit the claim
 
@@ -671,7 +736,7 @@ Do this by hand first, then compare the model's answer. The packet is synthetic 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 36</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 40</div>
 
 # Adversarial means skeptical.<br>It does not mean hostile.
 
@@ -687,7 +752,7 @@ These are classroom role assignments. They can be two students plus a model, or 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 37</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 41</div>
 
 # Give the challenger<br>the evidence.
 
@@ -703,7 +768,7 @@ Use a separate review context if practical, but do not claim reviewer independen
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 38</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 42</div>
 
 # Challenge the author’s<br>assumptions.
 
@@ -720,7 +785,7 @@ These are the recorded routes for one Nightshift acceptance run, not a model ran
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 39</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 43</div>
 
 # Make the behavior observable.
 
@@ -738,7 +803,7 @@ Ask students to write the expected behavior before running anything. Preserve th
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 40</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 44</div>
 
 # Try the wrong<br>account and service.
 
@@ -754,7 +819,7 @@ Interactive fixture only, no network. Choose a failure scenario, reveal the inco
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 41</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 45</div>
 
 # The repair must change<br>the observation.
 
@@ -770,7 +835,7 @@ Make the fabrication boundary explicit: the intentionally incomplete version is 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 42</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 46</div>
 
 # Repair the smallest thing.<br>Retest the same requirement.
 
@@ -787,7 +852,7 @@ This is the workshop repair loop and it feeds back into Observe. Save before/aft
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 43</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 47</div>
 
 # We pointed it<br>at itself.
 
@@ -805,7 +870,7 @@ A real, partially completed run, separate from the duration-formatter rehearsal.
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 44</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 48</div>
 
 # Review keeps<br>the failed attempt.
 
@@ -822,7 +887,7 @@ Screenshot of the actual local Review panel for task 138: attempt 1 is recorded 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 45</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 49</div>
 
 # Every response can violate<br>more than one requirement.
 
@@ -839,7 +904,7 @@ Columns are the four requirements of the GSU coaching prompt in the retained aud
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 46</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 50</div>
 
 # A quote must belong<br>to the case it cites.
 
@@ -856,7 +921,7 @@ This is a real reviewer misattribution from the retained audit, paraphrased for 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 47</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 51</div>
 
 # Completed execution<br>≠ verified requirements.
 
@@ -873,7 +938,7 @@ Same separation the verifier must make: a timeout is unresolved, not a denial (a
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 48</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 52</div>
 
 # A green result needs<br>a trace you can inspect.
 
@@ -889,7 +954,7 @@ Test source exists for related boundaries; this is not a report that the new ver
 class: content exercise
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 49</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 53</div>
 
 # Exercise · try to break it
 
@@ -906,7 +971,7 @@ Inputs are synthetic and written for the handoff verifier; the GSU originals tar
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 50</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 54</div>
 
 # Your turn: reject<br>one unsupported claim.
 
@@ -922,7 +987,7 @@ Optional pair exercise or audience discussion depending on final format. Give 2�
 class: content exercise
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 51</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 55</div>
 
 # Exercise · show one trace
 
@@ -940,7 +1005,7 @@ Suggested peer rubric: can the partner locate the response, independently judge 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 52</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 56</div>
 
 # Human checkpoints.
 
@@ -957,7 +1022,7 @@ Distinguish the repository policy from what an LLM says it may do. The supervise
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 53</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 57</div>
 
 # What Nightshift 0.4.0<br>changes.
 
@@ -975,7 +1040,7 @@ Release 0.4.0 of the presenter's own open-source harness; one example of the pat
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 54</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 58</div>
 
 # Walkthrough 1 ·<br>Prepare the project.
 
@@ -996,7 +1061,7 @@ Step 1 of 4. Start from a small git repository with a passing test suite; this t
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 55</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 59</div>
 
 # Walkthrough 2 ·<br>Run it.
 
@@ -1018,7 +1083,7 @@ Step 2 of 4. The same command takes a ticket URL in place of the brief file. Thi
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 56</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 60</div>
 
 # Walkthrough 3 ·<br>Watch the stages.
 
@@ -1038,7 +1103,7 @@ Step 3 of 4. These durations are the recorded start and finish times of each att
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 57</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 61</div>
 
 # Walkthrough 4 ·<br>Read the result.
 
@@ -1056,7 +1121,7 @@ Step 4 of 4. Read the result, not the exit message. The implementation worker's 
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 58</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 62</div>
 
 # Optional · inside<br>Claude Code.
 
@@ -1076,7 +1141,7 @@ Optional slide; skip it if the fix is not released. Tested 2026-11-12 with Claud
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 59</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 63</div>
 
 # Remember the decision.<br>Keep the limitation.
 
@@ -1092,7 +1157,7 @@ Show a completed decision artifact, not a whole chat dump. Mark the fixture synt
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 60</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 64</div>
 
 # The next session starts<br>with better orientation.
 
@@ -1108,7 +1173,7 @@ Return to OODA. Ask what should be invalidated if the service, identity, permiss
 class: closing
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 61</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 65</div>
 
 # Leave with one<br>defensible engineering story.
 
@@ -1124,7 +1189,7 @@ Reserve the final seven minutes for questions and next steps. This deck does not
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 62</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 66</div>
 
 # Works cited.
 
@@ -1140,7 +1205,7 @@ Each reference supports a specific claim on a specific slide; sources/SOURCES.md
 class: content
 ---
 
-<div class="slide-number">KENNESAW STATE UNIVERSITY · 63</div>
+<div class="slide-number">KENNESAW STATE UNIVERSITY · 67</div>
 
 # Sources and take-home kit.
 
